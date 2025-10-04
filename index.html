@@ -9,23 +9,31 @@
       --yellow: #d4af37;
       --black: #111;
       --white: #fefefe;
+      --gray: #222;
     }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background: var(--black);
       color: var(--white);
+      line-height: 1.6;
     }
     header {
       background: var(--yellow);
       color: var(--black);
-      padding: 1.5rem;
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
     header h1 {
       margin: 0;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
+      font-weight: bold;
       text-transform: uppercase;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
     main {
       max-width: 1100px;
@@ -33,7 +41,7 @@
       padding: 2rem;
     }
     section {
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
     h2 {
       color: var(--yellow);
@@ -41,66 +49,90 @@
       border-bottom: 2px solid var(--yellow);
       display: inline-block;
       padding-bottom: 0.3rem;
+      font-size: 1.8rem;
     }
     .card {
-      background: var(--black);
-      border: 2px solid var(--yellow);
-      border-radius: 10px;
-      padding: 1rem;
+      background: var(--gray);
+      border: 1px solid var(--yellow);
+      border-radius: 12px;
+      padding: 1.5rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1.5rem;
+      align-items: center;
     }
     img, video {
       max-width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
+    }
+    .problem-solution {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .problem-solution .card {
+      text-align: center;
+    }
+    .problem-solution h3 {
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
     }
     .team {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
     .team-member {
       text-align: center;
       padding: 1rem;
-      border: 2px solid var(--yellow);
-      border-radius: 8px;
-      background: var(--black);
+      border: 1px solid var(--yellow);
+      border-radius: 10px;
+      background: var(--gray);
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: scale(1.05);
     }
     .team-member img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--yellow);
+      margin-bottom: 0.8rem;
     }
     .sdg-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
     }
     .sdg-card {
-      background: var(--black);
-      border: 2px solid var(--yellow);
+      background: var(--gray);
+      border: 1px solid var(--yellow);
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
+      transition: transform 0.3s;
+    }
+    .sdg-card:hover {
+      transform: translateY(-5px);
     }
     .sdg-card img {
-      width: 100px;
+      width: 90px;
       margin-bottom: 10px;
     }
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       background: var(--yellow);
       color: var(--black);
-      font-size: 0.9rem;
+      font-size: 1rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
@@ -124,6 +156,21 @@
             <source src="project-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM & SOLUTION -->
+    <section>
+      <h2>Problem Statement & Solution</h2>
+      <div class="problem-solution">
+        <div class="card">
+          <h3>Problem Statement</h3>
+          <p>Public infrastructure faces rising energy consumption and limited adoption of sustainable practices, leading to inefficiencies and missed opportunities for reducing environmental impact and operational costs.</p>
+        </div>
+        <div class="card">
+          <h3>Solution</h3>
+          <p>Piezoelectricity, which generates electrical energy from mechanical movements, offers a promising solution. By using piezoelectric tiles in heavy foot traffic areas, we can reduce energy consumption and move a step forward toward green and smart cities.</p>
         </div>
       </div>
     </section>
@@ -186,6 +233,14 @@
       </div>
     </section>
   </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Piezowalk | Built for a greener tomorrow 🌍</p>
+  </footer>
+</body>
+</html>
+
 
   <!-- FOOTER -->
   <footer>
