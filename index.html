@@ -63,7 +63,7 @@
     }
 
     nav a:hover {
-      color: white;
+      color: #fff5e6;
     }
 
     header {
@@ -117,7 +117,7 @@
       box-shadow: 0 0 12px rgba(255,165,0,0.7);
     }
 
-    /* PROBLEM & SOLUTION CARDS */
+    /* PROBLEM & SOLUTION */
     .problem-solution {
       display: flex;
       flex-direction: column;
@@ -125,11 +125,11 @@
     }
 
     .ps-card {
-      background: linear-gradient(135deg, #1a1a1a, #252525);
+      background: linear-gradient(145deg, #1a1a1a, #252525);
       border: 2px solid rgba(255,140,0,0.4);
       border-radius: 15px;
       padding: 2rem;
-      box-shadow: 0 0 20px rgba(255,140,0,0.2);
+      box-shadow: 0 0 20px rgba(255,140,0,0.25);
       transition: transform 0.4s, box-shadow 0.4s;
       position: relative;
       overflow: hidden;
@@ -139,7 +139,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(255,140,0,0.25), transparent 70%);
+      background: radial-gradient(circle at top left, rgba(255,110,0,0.25), transparent 70%);
       pointer-events: none;
     }
 
@@ -160,7 +160,28 @@
       line-height: 1.7;
     }
 
-    /* TEAM SECTION */
+    /* PROJECT & EXPERIMENT */
+    .media-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .media-section img, .media-section video {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(255,140,0,0.4);
+      border: 2px solid rgba(255,165,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .media-section img:hover, .media-section video:hover {
+      transform: scale(1.03);
+    }
+
+    /* TEAM */
     .team-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -168,17 +189,17 @@
     }
 
     .member-card {
-      background: #1b1b1b;
+      background: linear-gradient(145deg, #1b1b1b, #222);
       border-radius: 15px;
       padding: 1.5rem;
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 10px rgba(255,140,0,0.2);
+      box-shadow: 0 0 15px rgba(255,140,0,0.25);
     }
 
     .member-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(255,140,0,0.5);
+      box-shadow: 0 0 25px rgba(255,140,0,0.6);
     }
 
     .member-card img {
@@ -201,6 +222,57 @@
       margin: 0;
     }
 
+    /* SDGs */
+    .sdg-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    .sdg-card {
+      text-align: center;
+      background: #1a1a1a;
+      border: 2px solid rgba(255,110,0,0.3);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 0 10px rgba(255,140,0,0.3);
+    }
+
+    .sdg-card img {
+      width: 90px;
+      margin-bottom: 1rem;
+    }
+
+    .sdg-card p {
+      color: #fff2e0;
+    }
+
+    /* SOCIAL */
+    #social {
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(45deg, #ff7e33, #ffb347);
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 0 12px rgba(255,165,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .social a:hover { transform: scale(1.05); }
+
+    .social img { width: 24px; height: 24px; }
+
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -210,18 +282,14 @@
     }
 
     @media (min-width: 700px) {
-      .problem-solution {
-        flex-direction: row;
-      }
-      .team-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .problem-solution { flex-direction: row; }
+      .team-grid { grid-template-columns: repeat(3, 1fr); }
+      .sdg-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (min-width: 1000px) {
-      .team-grid {
-        grid-template-columns: repeat(5, 1fr);
-      }
+      .team-grid { grid-template-columns: repeat(5, 1fr); }
+      .sdg-grid { grid-template-columns: repeat(4, 1fr); }
     }
   </style>
 </head>
@@ -248,12 +316,35 @@
     <div class="problem-solution">
       <div class="ps-card">
         <h3>⚡ The Problem</h3>
-        <p>As cities grow, public infrastructure consumes increasing amounts of energy — most of it still sourced from non-renewable means. The energy from daily human movement, especially in crowded spaces, remains untapped, while sustainability goals demand innovative solutions.</p>
+        <p>Public spaces consume enormous energy — yet, we walk past endless opportunities. The kinetic energy from footsteps in malls, stations, and walkways is wasted daily. With rising costs and global warming, inaction means unsustainability.</p>
       </div>
       <div class="ps-card">
         <h3>🌍 Our Solution</h3>
-        <p>Piezowalk transforms footsteps into clean energy using piezoelectric mats placed in high-traffic areas. Each step generates electrical power that can be used to light spaces or power sensors, contributing to a smarter, greener urban ecosystem.</p>
+        <p>Piezowalk harnesses every step. Using piezoelectric mats, we convert mechanical motion into electricity to power LEDs, sensors, or microcontrollers — turning movement into renewable energy and paving the path toward smarter, greener cities.</p>
       </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Project -->
+  <section id="project">
+    <h2>Our Project</h2>
+    <div class="media-section">
+      <img src="project.jpg" alt="Piezowalk Project">
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Experiments -->
+  <section id="experiments">
+    <h2>Our Experiments</h2>
+    <div class="media-section">
+      <video controls>
+        <source src="experiment1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
@@ -291,6 +382,32 @@
     </div>
   </section>
 
+  <div class="divider"></div>
+
+  <!-- SDGs -->
+  <section id="sdgs">
+    <h2>Our SDGs</h2>
+    <div class="sdg-grid">
+      <div class="card sdg-card"><img src="sdg7.png" alt="SDG 7"><p>Affordable and Clean Energy</p></div>
+      <div class="card sdg-card"><img src="sdg9.png" alt="SDG 9"><p>Industry, Innovation and Infrastructure</p></div>
+      <div class="card sdg-card"><img src="sdg11.png" alt="SDG 11"><p>Sustainable Cities and Communities</p></div>
+      <div class="card sdg-card"><img src="sdg13.png" alt="SDG 13"><p>Climate Action</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Social Media -->
+  <section id="social">
+    <h2>Connect With Us</h2>
+    <p style="color:#aaa; margin: 1rem auto 2rem; font-size:1.2rem;">Stay updated with our journey on Instagram</p>
+    <div class="social">
+      <a href="https://instagram.com/piyezow" target="_blank">
+        <img src="instagram.png" alt="Instagram">@piyezow
+      </a>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Piezowalk Project. All Rights Reserved.</p>
   </footer>
@@ -308,4 +425,3 @@
   </script>
 </body>
 </html>
-
