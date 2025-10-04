@@ -2,252 +2,204 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Piezowalk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piezowalk</title>
   <style>
-    :root {
-      --yellow: #d4af37;
-      --black: #111;
-      --white: #fefefe;
-      --gray: #222;
-    }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: var(--black);
-      color: var(--white);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
+      color: #f8f8f8;
       line-height: 1.6;
     }
+
     header {
-      background: var(--yellow);
-      color: var(--black);
-      padding: 2rem 1rem;
+      background: linear-gradient(to right, #facc15, #f59e0b);
+      color: black;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      padding: 3rem 1rem;
     }
+
     header h1 {
+      font-size: 3rem;
       margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-transform: uppercase;
     }
+
     header p {
       font-size: 1.2rem;
-      margin-top: 0.5rem;
+      opacity: 0.8;
     }
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem;
-    }
+
     section {
-      margin-bottom: 3.5rem;
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
     }
+
     h2 {
-      color: var(--yellow);
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--yellow);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-      font-size: 1.8rem;
-    }
-    .card {
-      background: var(--gray);
-      border: 1px solid var(--yellow);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    img, video {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-    .problem-solution {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .problem-solution .card {
       text-align: center;
+      margin-bottom: 2rem;
+      color: #facc15;
     }
-    .problem-solution h3 {
-      color: var(--yellow);
-      margin-bottom: 0.5rem;
+
+    .card {
+      background: #1c1c1c;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .team {
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .media-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-section img, .media-section video {
+      border-radius: 12px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .sdg-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
-      margin-top: 1.5rem;
     }
-    .team-member {
-      text-align: center;
+
+    .sdg-card {
+      background: #1c1c1c;
+      border-radius: 12px;
       padding: 1rem;
-      border: 1px solid var(--yellow);
-      border-radius: 10px;
-      background: var(--gray);
-      transition: transform 0.3s;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
     }
-    .team-member:hover {
+
+    .sdg-card:hover {
       transform: scale(1.05);
     }
-    .team-member img {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--yellow);
-      margin-bottom: 0.8rem;
-    }
-    .sdg-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .sdg-card {
-      background: var(--gray);
-      border: 1px solid var(--yellow);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .sdg-card:hover {
-      transform: translateY(-5px);
-    }
+
     .sdg-card img {
-      width: 90px;
-      margin-bottom: 10px;
+      max-width: 120px;
+      margin-bottom: 1rem;
     }
+
     footer {
       text-align: center;
-      padding: 1.5rem;
-      background: var(--yellow);
-      color: var(--black);
-      font-size: 1rem;
-      margin-top: 2rem;
+      padding: 2rem;
+      background: #000;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+
   <header>
-    <h1>PIEZOWALK</h1>
-    <p>Turning footsteps into clean, sustainable energy ⚡</p>
+    <h1>Piezowalk</h1>
+    <p>Harvesting Energy from Every Step Towards a Sustainable Future</p>
   </header>
 
-  <main>
-    <!-- PROJECT SHOWCASE -->
-    <section>
-      <h2>Our Project</h2>
-      <div class="card grid-2">
-        <div>
-          <img src="project-image.jpg" alt="Piezowalk Project">
-        </div>
-        <div>
-          <video controls>
-            <source src="project-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROBLEM & SOLUTION -->
-    <section>
-      <h2>Problem Statement & Solution</h2>
-      <div class="problem-solution">
-        <div class="card">
-          <h3>Problem Statement</h3>
-          <p>Public infrastructure faces rising energy consumption and limited adoption of sustainable practices, leading to inefficiencies and missed opportunities for reducing environmental impact and operational costs.</p>
-        </div>
-        <div class="card">
-          <h3>Solution</h3>
-          <p>Piezoelectricity, which generates electrical energy from mechanical movements, offers a promising solution. By using piezoelectric tiles in heavy foot traffic areas, we can reduce energy consumption and move a step forward toward green and smart cities.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIMENTS -->
-    <section>
-      <h2>Experiments</h2>
+  <section>
+    <h2>Problem Statement & Solution</h2>
+    <div class="grid">
       <div class="card">
-        <p>Here are some results and pictures from our experiments:</p>
-        <img src="experiment1.jpg" alt="Experiment 1">
+        <h3>Problem Statement</h3>
+        <p>
+          Public infrastructure faces rising energy consumption and limited adoption of sustainable practices,
+          leading to inefficiencies and missed opportunities for reducing environmental impact and operational costs.
+        </p>
       </div>
       <div class="card">
-        <img src="experiment2.jpg" alt="Experiment 2">
+        <h3>Solution</h3>
+        <p>
+          Piezoelectricity, which generates electrical energy from mechanical movements, offers a promising solution.
+          By installing piezoelectric tiles in heavy foot traffic areas, we can reduce energy consumption and
+          contribute to greener, smarter cities.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SDGs -->
-    <section>
-      <h2>Our Contribution to SDGs</h2>
-      <div class="sdg-grid">
-        <div class="sdg-card">
-          <img src="sdg7.png" alt="SDG 7: Affordable & Clean Energy">
-          <h3>SDG 7: Affordable & Clean Energy</h3>
-          <p>Piezowalk generates renewable energy from footsteps, reducing dependency on fossil fuels.</p>
-        </div>
-        <div class="sdg-card">
-          <img src="sdg9.png" alt="SDG 9: Industry, Innovation & Infrastructure">
-          <h3>SDG 9: Industry, Innovation & Infrastructure</h3>
-          <p>Our project represents innovation in clean technology and strengthens sustainable infrastructure.</p>
-        </div>
-        <div class="sdg-card">
-          <img src="sdg11.png" alt="SDG 11: Sustainable Cities & Communities">
-          <h3>SDG 11: Sustainable Cities & Communities</h3>
-          <p>Integrating our mats into public spaces promotes eco-friendly infrastructure.</p>
-        </div>
-        <div class="sdg-card">
-          <img src="sdg13.png" alt="SDG 13: Climate Action">
-          <h3>SDG 13: Climate Action</h3>
-          <p>By harvesting clean energy, we contribute to reducing carbon emissions and fighting climate change.</p>
-        </div>
+  <section>
+    <h2>Our Project</h2>
+    <div class="media-section">
+      <img src="project.jpg" alt="Piezowalk Project">
+      <video controls>
+        <source src="project.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experiments</h2>
+    <div class="grid">
+      <div class="card"><img src="exp1.jpg" alt="Experiment 1" style="width:100%; border-radius:8px;"></div>
+      <div class="card"><img src="exp2.jpg" alt="Experiment 2" style="width:100%; border-radius:8px;"></div>
+      <div class="card"><img src="exp3.jpg" alt="Experiment 3" style="width:100%; border-radius:8px;"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Meet the Team</h2>
+    <div class="grid">
+      <div class="card"><h3>Member 1</h3><p>Role / Contribution</p></div>
+      <div class="card"><h3>Member 2</h3><p>Role / Contribution</p></div>
+      <div class="card"><h3>Member 3</h3><p>Role / Contribution</p></div>
+      <div class="card"><h3>Member 4</h3><p>Role / Contribution</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Contribution to SDGs</h2>
+    <div class="sdg-grid">
+      <div class="sdg-card">
+        <img src="sdg7.png" alt="SDG 7">
+        <h3>SDG 7: Affordable & Clean Energy</h3>
+        <p>Piezowalk generates renewable energy from footsteps, reducing dependency on fossil fuels.</p>
       </div>
-    </section>
-
-    <!-- TEAM MEMBERS -->
-    <section>
-      <h2>Our Team</h2>
-      <div class="team">
-        <div class="team-member">
-          <img src="member1.jpg" alt="Member 1">
-          <p><strong>Member 1</strong><br>Role/Task</p>
-        </div>
-        <div class="team-member">
-          <img src="member2.jpg" alt="Member 2">
-          <p><strong>Member 2</strong><br>Role/Task</p>
-        </div>
-        <div class="team-member">
-          <img src="member3.jpg" alt="Member 3">
-          <p><strong>Member 3</strong><br>Role/Task</p>
-        </div>
+      <div class="sdg-card">
+        <img src="sdg9.png" alt="SDG 9">
+        <h3>SDG 9: Industry, Innovation & Infrastructure</h3>
+        <p>Our project represents innovation in clean technology and strengthens sustainable infrastructure.</p>
       </div>
-    </section>
-  </main>
+      <div class="sdg-card">
+        <img src="sdg11.png" alt="SDG 11">
+        <h3>SDG 11: Sustainable Cities & Communities</h3>
+        <p>Integrating our mats into public spaces promotes eco-friendly infrastructure.</p>
+      </div>
+      <div class="sdg-card">
+        <img src="sdg13.png" alt="SDG 13">
+        <h3>SDG 13: Climate Action</h3>
+        <p>By harvesting clean energy, we contribute to reducing carbon emissions and fighting climate change.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2025 Piezowalk | Built for a greener tomorrow 🌍</p>
+    <p>&copy; 2025 Piezowalk | Innovating for a Sustainable Future</p>
   </footer>
+
 </body>
 </html>
 
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Piezowalk | Built for a greener tomorrow 🌍</p>
-  </footer>
-</body>
-</html>
 
 
 
