@@ -65,7 +65,7 @@
       margin: 0;
       text-transform: uppercase;
       letter-spacing: 6px;
-      background: linear-gradient(to top, #B8860B, #FFD700); /* vertical gradient */
+      background: linear-gradient(to top, #B8860B, #FFD700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.5),
@@ -167,6 +167,36 @@
       margin-bottom: 1rem;
     }
 
+    /* Social Media */
+    .social {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #FFD700;
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #FFD700;
+      border-radius: 50px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .social a:hover {
+      background: #FFD700;
+      color: #000;
+    }
+
+    .social img {
+      width: 24px;
+      height: 24px;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -185,6 +215,7 @@
     <a href="#experiments">Experiments</a>
     <a href="#team">Team</a>
     <a href="#sdgs">SDGs</a>
+    <a href="#social">Social</a>
   </nav>
 
   <!-- Hero -->
@@ -220,20 +251,16 @@
     <h2>Our Project</h2>
     <div class="media-section">
       <img src="project.jpg" alt="Piezowalk Project">
-      <video controls>
-        <source src="experiment1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
     </div>
   </section>
 
   <!-- Experiments -->
   <section id="experiments">
     <h2>Experiments</h2>
-    <div class="grid">
-      <div class="card"><img src="exp1.jpg" alt="Experiment 1" style="width:100%; border-radius:10px;"></div>
-      <div class="card"><img src="exp2.jpg" alt="Experiment 2" style="width:100%; border-radius:10px;"></div>
-      <div class="card"><img src="exp3.jpg" alt="Experiment 3" style="width:100%; border-radius:10px;"></div>
+    <div class="media-section">
+      <div class="card"><img src="exp1.jpg" alt="Experiment 1"></div>
+      <div class="card"><video controls><source src="experiment1.mp4" type="video/mp4">Your browser does not support video.</video></div>
+      <div class="card"><img src="exp2.jpg" alt="Experiment 2"></div>
     </div>
   </section>
 
@@ -275,10 +302,21 @@
     </div>
   </section>
 
+  <!-- Social Media -->
+  <section id="social">
+    <h2>Connect With Us</h2>
+    <div class="social">
+      <a href="https://instagram.com/yourpage" target="_blank">
+        <img src="instagram.png" alt="Instagram"> Follow us on Instagram
+      </a>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Piezowalk | Innovating for a Sustainable Future</p>
   </footer>
 
 </body>
 </html>
+
 
