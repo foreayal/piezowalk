@@ -5,63 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Piezowalk</title>
   <style>
+    /* General Styles */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #111;
+      background-color: #0b0b0b;
       color: #f8f8f8;
       line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(to right, #facc15, #f59e0b);
-      color: black;
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
+      scroll-behavior: smooth;
     }
 
     h2 {
       text-align: center;
       margin-bottom: 2rem;
       color: #facc15;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(17, 17, 17, 0.95);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #facc15;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* Hero Section */
+    header {
+      background: linear-gradient(to right, rgba(250, 204, 21, 0.9), rgba(245, 158, 11, 0.9)), url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: black;
+      text-align: center;
+      padding: 6rem 1rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+      animation: fadeDown 1.5s ease;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      animation: fadeUp 2s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 1rem;
+      max-width: 1100px;
+      margin: auto;
     }
 
     .card {
       background: #1c1c1c;
-      border-radius: 12px;
+      border-radius: 15px;
       padding: 2rem;
       margin: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
+    /* Media Section */
     .media-section {
       display: flex;
       flex-wrap: wrap;
@@ -71,12 +118,18 @@
     }
 
     .media-section img, .media-section video {
-      border-radius: 12px;
-      max-width: 450px;
+      border-radius: 15px;
+      max-width: 480px;
       width: 100%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
     }
 
+    .media-section img:hover, .media-section video:hover {
+      transform: scale(1.03);
+    }
+
+    /* SDGs */
     .sdg-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -86,14 +139,15 @@
     .sdg-card {
       background: #1c1c1c;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .sdg-card:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
     }
 
     .sdg-card img {
@@ -106,17 +160,29 @@
       padding: 2rem;
       background: #000;
       color: #aaa;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
+  <nav>
+    <a href="#problem">Problem</a>
+    <a href="#project">Project</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#team">Team</a>
+    <a href="#sdgs">SDGs</a>
+  </nav>
+
+  <!-- Hero -->
   <header>
     <h1>Piezowalk</h1>
     <p>Harvesting Energy from Every Step Towards a Sustainable Future</p>
   </header>
 
-  <section>
+  <!-- Problem/Solution -->
+  <section id="problem">
     <h2>Problem Statement & Solution</h2>
     <div class="grid">
       <div class="card">
@@ -137,7 +203,8 @@
     </div>
   </section>
 
-  <section>
+  <!-- Project -->
+  <section id="project">
     <h2>Our Project</h2>
     <div class="media-section">
       <img src="project.jpg" alt="Piezowalk Project">
@@ -148,16 +215,18 @@
     </div>
   </section>
 
-  <section>
+  <!-- Experiments -->
+  <section id="experiments">
     <h2>Experiments</h2>
     <div class="grid">
-      <div class="card"><img src="exp1.jpg" alt="Experiment 1" style="width:100%; border-radius:8px;"></div>
-      <div class="card"><img src="exp2.jpg" alt="Experiment 2" style="width:100%; border-radius:8px;"></div>
-      <div class="card"><img src="exp3.jpg" alt="Experiment 3" style="width:100%; border-radius:8px;"></div>
+      <div class="card"><img src="exp1.jpg" alt="Experiment 1" style="width:100%; border-radius:10px;"></div>
+      <div class="card"><img src="exp2.jpg" alt="Experiment 2" style="width:100%; border-radius:10px;"></div>
+      <div class="card"><img src="exp3.jpg" alt="Experiment 3" style="width:100%; border-radius:10px;"></div>
     </div>
   </section>
 
-  <section>
+  <!-- Team -->
+  <section id="team">
     <h2>Meet the Team</h2>
     <div class="grid">
       <div class="card"><h3>Member 1</h3><p>Role / Contribution</p></div>
@@ -167,7 +236,8 @@
     </div>
   </section>
 
-  <section>
+  <!-- SDGs -->
+  <section id="sdgs">
     <h2>Our Contribution to SDGs</h2>
     <div class="sdg-grid">
       <div class="sdg-card">
@@ -199,8 +269,3 @@
 
 </body>
 </html>
-
-
-
-
-
