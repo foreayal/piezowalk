@@ -1,246 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Piezowalk — Harvesting Energy from Every Step</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piezowalk — Glowing Amber Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;
+  --amber-1:#FFB347;
+  --amber-2:#FF9A1C;
+  --amber-3:#CC6A00;
+  --muted:#e9e2da;
+  --card:#111214;
+  --glass: rgba(255,186,110,0.06);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--muted);line-height:1.6;overflow-x:hidden}
+a{color:var(--amber-1);text-decoration:none}
+nav{
+  position:sticky;top:0;z-index:1200;
+  display:flex;justify-content:center;gap:16px;
+  padding:12px 18px;
+  background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(10,10,10,0.72));
+  backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,186,110,0.06);
+}
+nav a{ font-weight:600; font-size:0.95rem; padding:6px 10px; transition: color .18s, transform .18s;}
+nav a:hover{ color:#fff; transform:translateY(-2px);}
 
-    body {
-      background-color: #0a0a0a;
-      color: #fff;
-      overflow-x: hidden;
-    }
+/* HERO */
+.hero{min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px 18px;position:relative;overflow:hidden;}
+.hero-gradient{
+  position:absolute;inset:-10% -20% -10% -20%;
+  background: linear-gradient(120deg, rgba(255,186,110,0.035), rgba(255,154,28,0.045) 40%, rgba(204,106,0,0.03) 70%);
+  filter:blur(40px) saturate(110%);
+  animation:heroFlow 22s linear infinite;z-index:0;
+}
+@keyframes heroFlow{0%{transform:translateX(-10%)}50%{transform:translateX(6%)}100%{transform:translateX(-10%)}}
+.hero-inner{ position:relative; z-index:2; max-width:1000px; padding:36px 20px;}
+.hero h1{
+  margin:0; font-size:42px; letter-spacing:2px; font-weight:800; background:linear-gradient(90deg,var(--amber-2),var(--amber-1));
+  -webkit-background-clip:text; color:transparent; text-shadow:0 0 12px var(--amber-2),0 0 24px var(--amber-1),0 0 36px var(--amber-2);
+  animation:neonGlow 2s ease-in-out infinite alternate;
+}
+@keyframes neonGlow{
+  0%{text-shadow:0 0 12px var(--amber-2),0 0 24px var(--amber-1),0 0 36px var(--amber-2);}
+  50%{text-shadow:0 0 18px var(--amber-2),0 0 28px var(--amber-1),0 0 48px var(--amber-2);}
+  100%{text-shadow:0 0 12px var(--amber-2),0 0 24px var(--amber-1),0 0 36px var(--amber-2);}
+}
+.hero p{margin:12px 0 0;color:#efe6d9;opacity:.95;font-weight:300;font-size:1.02rem}
+.scroll-indicator{position:absolute;left:50%;transform:translateX(-50%);bottom:20px;width:28px;height:44px;display:flex;align-items:flex-start;justify-content:center;gap:6px;z-index:3;opacity:.9;}
+.scroll-indicator .wheel{width:6px;height:10px;border-radius:6px;background:linear-gradient(#fff,#ffe8c9);animation:wheel 1.6s infinite;box-shadow:0 0 8px rgba(255,170,80,0.25);opacity:.9;}
+@keyframes wheel{0%{transform:translateY(0)}50%{transform:translateY(10px)}100%{transform:translateY(0)}}
+.angle{height:64px;background:transparent;clip-path:polygon(0 0,100% 40%,100% 100%,0 100%);transform:translateY(-1px);}
+section{padding:64px 20px;max-width:1100px;margin:0 auto;position:relative;}
+.container{width:100%;margin:0 auto;}
+.divider{height:2px;width:80%;margin:18px auto 0;background: linear-gradient(90deg, transparent, rgba(255,154,28,0.45), transparent);opacity:.7;border-radius:2px;}
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-    }
+/* PROBLEM/SOLUTION SPLIT */
+.split{display:grid;grid-template-columns:1fr;gap:20px;align-items:stretch;}
+.ps-card{background:linear-gradient(180deg, #0f0f0f, #0b0b0b);border-radius:14px;padding:28px;box-shadow:0 8px 40px rgba(255,186,110,0.08);border:1px solid rgba(255,186,110,0.04);position:relative;overflow:hidden;transition: box-shadow .6s ease;}
+.ps-card:hover{box-shadow:0 10px 50px rgba(255,186,110,0.18);}
+.ps-card::before{
+  content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(120deg, rgba(255,154,28,0.05), rgba(255,186,110,0.08));opacity:0;transition:opacity 0.6s ease;
+}
+.ps-card:hover::before{opacity:1;}
+.ps-card .icon{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;}
+.ps-left .icon{background:linear-gradient(135deg,var(--amber-3), rgba(255,114,0,0.95));color:#fff}
+.ps-right .icon{background:linear-gradient(135deg,var(--amber-1), var(--amber-2));color:#111}
+.ps-card h3{margin:0 0 8px;font-size:1.1rem;color:var(--amber-1)}
+.ps-card p{margin:0;color:#efe6d9;line-height:1.6;font-weight:300}
+.ps-left{border-left:4px solid rgba(204,106,0,0.18)}
+.ps-right{border-left:4px solid rgba(255,186,110,0.18)}
 
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #ffb300;
-      text-shadow: 0 0 15px #ffb300;
-      letter-spacing: 2px;
-    }
+/* MEDIA */
+.media{display:flex;flex-direction:column;gap:18px;align-items:center;}
+.media img,.media video{width:100%;max-width:720px;border-radius:12px;display:block;border:1px solid rgba(255,186,110,0.04);box-shadow: 0 10px 30px rgba(255,154,28,0.06);}
 
-    header p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #f5e6c0;
-    }
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:20px;align-items:start;}
+.member{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);padding:18px;border-radius:12px;text-align:center;transition:transform .32s ease, box-shadow .32s ease,border 0.5s;}
+.member::before{
+  content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(45deg, rgba(255,154,28,0.02), rgba(255,186,110,0.04));opacity:0;transition:opacity .6s ease;
+}
+.member:hover::before{opacity:1;}
+.member:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(255,154,28,0.08);}
+.avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 12px;display:block;object-fit:cover;border:5px solid rgba(255,186,110,0.18);box-shadow: 0 8px 30px rgba(255,154,28,0.06);transition:transform .32s ease;}
+.member:hover .avatar{transform:scale(1.04);}
+.member h4{margin:6px 0 4px;color:var(--amber-1);font-size:1rem}
+.member p{margin:0;color:#e8dccf;font-size:.95rem;opacity:.95}
 
-    section {
-      padding: 4rem 1rem;
-      text-align: center;
-    }
+/* SDG */
+.sdg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.sdg{display:flex;flex-direction:column;align-items:center;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,186,110,0.02), rgba(255,154,28,0.01));border:1px solid rgba(255,186,110,0.03);text-align:center;}
+.sdg img{width:84px;height:auto;margin-bottom:10px;}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-    }
+/* SOCIAL */
+.social-wrapper{display:flex;justify-content:center;gap:12px;align-items:center;flex-direction:column;}
+.social-card{position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(255,154,28,0.05), rgba(255,186,110,0.07));padding:28px;border-radius:18px;box-shadow:0 12px 40px rgba(255,154,28,0.08);}
+.social-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg, rgba(255,186,110,0.1), rgba(255,154,28,0.1));opacity:0;transition:opacity 1s ease;}
+.social-card:hover::before{opacity:1;}
+.social-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,var(--amber-1),var(--amber-2));color:#040404;font-weight:700;box-shadow:0 12px 30px rgba(255,154,28,0.12);transition:transform .3s ease;}
+.social-btn:hover{transform:scale(1.05);}
 
-    h2 {
-      color: #ffb300;
-      text-shadow: 0 0 10px #ffb300;
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
-    }
+footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;background:transparent}
 
-    p {
-      line-height: 1.7;
-      color: #efe6d9;
-    }
+/* responsive */
+@media(min-width:800px){
+  .split{grid-template-columns:1fr 1fr;gap:28px}
+  .team-grid{grid-template-columns: repeat(3, 1fr)}
+  .sdg-grid{grid-template-columns: repeat(4, 1fr)}
+}
 
-    .divider {
-      width: 80px;
-      height: 2px;
-      background-color: #ffb300;
-      margin: 2rem auto;
-      box-shadow: 0 0 10px #ffb300;
-    }
+/* reveal animation helpers */
+.reveal{ opacity:0; transform:translateY(28px) translateX(0); transition:transform 1.2s cubic-bezier(.15,.84,.42,1), opacity 1.2s ease;}
+.from-left{ transform:translateX(-18px) translateY(18px) }
+.from-right{ transform:translateX(18px) translateY(18px) }
+.visible{ opacity:1; transform:translateX(0) translateY(0) }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .media img, .media video {
-      width: 100%;
-      max-width: 700px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ffb30070;
-      margin-top: 1.5rem;
-    }
-
-    footer {
-      padding: 2rem;
-      background-color: #000;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ffb300;
-    }
-
-    .social a {
-      color: #ffb300;
-      text-decoration: none;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-
-    .social a:hover {
-      color: #ffd666;
-      text-shadow: 0 0 10px #ffb300;
-    }
-
-    /* TEAM SECTION */
-    .team {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .member {
-      background: #141414;
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 0 15px #ffb30040;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .member:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px #ffb30080;
-    }
-
-    .member h3 {
-      color: #ffb300;
-      margin-bottom: 0.5rem;
-    }
-
-    .member p {
-      font-size: 0.95rem;
-      color: #f0e6cc;
-    }
-  </style>
+</style>
 </head>
 <body>
+<nav>
+  <a href="#problem">Problem</a>
+  <a href="#project">Project</a>
+  <a href="#experiments">Experiments</a>
+  <a href="#data">Data</a>
+  <a href="#team">Team</a>
+  <a href="#sdgs">SDGs</a>
+  <a href="#social">Social</a>
+</nav>
 
-  <!-- HERO SECTION -->
-  <header>
+<header class="hero">
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-inner">
     <h1>PIEZOWALK</h1>
-    <p>Harvesting energy from every step towards a greener future.</p>
-  </header>
+    <p>Harvesting energy from every step — practical piezoelectric mats for public spaces.</p>
+  </div>
+  <div class="scroll-indicator"><div class="wheel"></div></div>
+</header>
 
-  <!-- EXPERIMENTS SECTION -->
-  <section id="experiments" class="reveal from-left">
-    <div class="container">
-      <h2>Experiments</h2>
-      <p>We tested our Piezomat prototype under various foot traffic conditions to measure voltage output and efficiency.</p>
-      <div class="media">
-        <video muted autoplay loop playsinline>
-          <source src="experiment1.mp4" type="video/mp4">
-        </video>
+<div class="angle" style="background:linear-gradient(180deg, rgba(255,154,28,0.035), transparent)"></div>
+
+<section id="problem" class="reveal">
+  <div class="container">
+    <h2>Problem & Solution</h2>
+    <div class="split">
+      <article class="ps-card ps-left from-left">
+        <div class="icon">⚠️</div>
+        <h3>The Problem</h3>
+        <p>Modern public spaces consume large amounts of electricity while kinetic energy from pedestrian movement is wasted, increasing reliance on non-renewables and costs.</p>
+      </article>
+      <article class="ps-card ps-right from-right">
+        <div class="icon">🔋</div>
+        <h3>The Solution</h3>
+        <p>Piezowalk integrates piezoelectric mats in high-footfall areas to convert mechanical pressure into electrical energy for lighting, sensors, and micro-systems — reducing demand and improving sustainability.</p>
+      </article>
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section id="project" class="reveal from-left">
+  <div class="container">
+    <h2>Our Project</h2>
+    <div class="media"><img src="project.jpg" alt="Piezowalk Project"></div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section id="experiments" class="reveal from-right">
+  <div class="container">
+    <h2>Our Experiments</h2>
+    <div class="media"><video muted autoplay loop playsinline><source src="experiment1.mp4" type="video/mp4"></video></div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- DATA & RESULTS -->
+<section id="data" class="reveal from-left">
+  <div class="container">
+    <h2>Data & Results</h2>
+    <p style="color:#efe6d9; max-width:800px; margin:auto; font-size:1.05rem;">
+      Our testing phase measured the voltage and power output from footsteps on the piezomat. The table below shows consistent generation of micro-energy across different load and step frequencies.
+    </p>
+    <div class="media" style="margin-top:1.2rem;">
+      <img src="dataresults.png" alt="Voltage Output Graph">
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howitworks" class="reveal from-right">
+  <div class="container">
+    <h2>How It Works</h2>
+    <p style="color:#efe6d9; max-width:850px; margin:auto; font-size:1.05rem;">
+      When pressure is applied to the piezomat, the piezoelectric layers deform slightly — generating a small electric charge. This charge is collected through a rectifier circuit and stored in a capacitor or small battery for powering LEDs or IoT systems. The system continuously harvests energy with every step taken.
+    </p>
+    <div class="media" style="margin-top:1.2rem;">
+      <img src="diagram.jpg" alt="Piezoelectric Process Diagram">
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- WHAT IS PIEZOTILE -->
+<section id="piezotile" class="reveal from-left">
+  <div class="container">
+    <h2>What is Piezotile?</h2>
+    <p style="color:#efe6d9; max-width:850px; margin:auto; font-size:1.05rem;">
+      Piezotile was our earlier prototype — a rigid piezoelectric tile that captured energy from footsteps. Although functional, its installation and scalability were limited. This led us to innovate the flexible <b>Piezomat</b> design, ideal for high-traffic public spaces like malls, stations, and walkways.
+    </p>
+    <div class="media" style="margin-top:1.2rem;">
+      <img src="piezotile1.jpg" alt="Piezotile Prototype">
+      <img src="piezotile2.jpg" alt="Piezotile Close-up">
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<section id="team" class="reveal">
+  <div class="container">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="member reveal from-left">
+        <img src="hariz.jpg" alt="Hariz" class="avatar">
+        <h4>Hariz</h4>
+        <p>Builder</p>
       </div>
-      <div class="divider"></div>
-    </div>
-  </section>
-
-  <!-- DATA & RESULTS -->
-  <section id="data" class="reveal from-left">
-    <div class="container">
-      <h2>Data & Results</h2>
-      <p style="max-width:800px; margin:auto;">Our prototype successfully generated measurable voltage and power from footstep pressure. The following visuals summarize our data collection and testing process.</p>
-      <div class="media">
-        <img src="dataresults.png" alt="Data and Results Graph">
+      <div class="member reveal from-right">
+        <img src="rayyn.jpg" alt="Rayyn" class="avatar">
+        <h4>Rayyn</h4>
+        <p>Builder / Programmer</p>
       </div>
-      <div class="divider"></div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="howitworks" class="reveal from-right">
-    <div class="container">
-      <h2>How It Works</h2>
-      <p style="max-width:850px; margin:auto;">Each step compresses piezoelectric layers, converting mechanical stress into electrical energy. The generated energy is then rectified and stored for low-power uses like lighting and sensors.</p>
-      <div class="media">
-        <img src="diagram.jpg" alt="Piezoelectric Process Diagram">
+      <div class="member reveal from-left">
+        <img src="farah.jpg" alt="Farah" class="avatar">
+        <h4>Farah</h4>
+        <p>Leader / Researcher</p>
       </div>
-      <div class="divider"></div>
-    </div>
-  </section>
-
-  <!-- WHAT IS PIEZOTILE -->
-  <section id="piezotile" class="reveal from-left">
-    <div class="container">
-      <h2>What is Piezotile?</h2>
-      <p style="max-width:850px; margin:auto;">Piezotile was our original rigid piezoelectric tile that inspired the evolution of the Piezomat — a flexible, easier-to-install, and more efficient mat system for public spaces.</p>
-      <div class="media">
-        <img src="piezotile.jpg" alt="Piezotile Prototype">
+      <div class="member reveal from-right">
+        <img src="nadhirah.jpg" alt="Nadhirah" class="avatar">
+        <h4>Nadhirah</h4>
+        <p>Designer</p>
       </div>
-      <div class="divider"></div>
-    </div>
-  </section>
+      <div class="member reveal from-left">
+        <img src="balqis.jpg" alt="Balqis" class="avatar">
+       
 
-  <!-- TEAM SECTION -->
-  <section id="team" class="reveal from-right">
-    <div class="container">
-      <h2>Our Team</h2>
-      <div class="team">
-        <div class="member">
-          <h3>Rayyn</h3>
-          <p>Project Lead / Developer</p>
-        </div>
-        <div class="member">
-          <h3>Balqis</h3>
-          <p>Media / Designer</p>
-        </div>
-        <div class="member">
-          <h3>Harith</h3>
-          <p>IoT & Systems Engineer</p>
-        </div>
-      </div>
-      <div class="divider"></div>
-    </div>
-  </section>
-
-  <!-- CONNECT SECTION -->
-  <footer>
-    <p>Connect with us</p>
-    <div class="social">
-      <a href="https://www.instagram.com/piyezow" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </div>
-    <p style="margin-top:10px;">© 2025 Piezowalk. All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    // Reveal Animation
-    const reveals = document.querySelectorAll(".reveal");
-    window.addEventListener("scroll", () => {
-      for (let i = 0; i < reveals.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveals[i].getBoundingClientRect().top;
-        const elementVisible = 100;
-        if (elementTop < windowHeight - elementVisible) {
-          reveals[i].classList.add("active");
-        }
-      }
-    });
   </script>
 
 </body>
