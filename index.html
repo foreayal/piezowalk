@@ -16,7 +16,7 @@
   --glass: rgba(255,186,110,0.06);
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--muted);line-height:1.6;overflow-x:hidden}
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--muted);line-height:1.6;overflow-x:hidden;scroll-behavior:smooth}
 a{color:var(--amber-1);text-decoration:none}
 nav{
   position:sticky;top:0;z-index:1200;
@@ -41,7 +41,7 @@ nav a:hover{ color:#fff; transform:translateY(-2px);}
 .hero h1{
   margin:0; font-size:42px; letter-spacing:2px; font-weight:800; background:linear-gradient(90deg,var(--amber-2),var(--amber-1));
   -webkit-background-clip:text; color:transparent; text-shadow:0 0 12px var(--amber-2),0 0 24px var(--amber-1),0 0 36px var(--amber-2);
-  animation:neonGlow 2s ease-in-out infinite alternate;
+  animation:neonGlow 3s ease-in-out infinite alternate;
 }
 @keyframes neonGlow{
   0%{text-shadow:0 0 12px var(--amber-2),0 0 24px var(--amber-1),0 0 36px var(--amber-2);}
@@ -79,7 +79,7 @@ section{padding:64px 20px;max-width:1100px;margin:0 auto;position:relative;}
 
 /* TEAM */
 .team-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:20px;align-items:start;}
-.member{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);padding:18px;border-radius:12px;text-align:center;transition:transform .32s ease, box-shadow .32s ease,border 0.5s;}
+.member{background:linear-gradient(180deg,#0f0f0f,#0b0b0b);padding:18px;border-radius:12px;text-align:center;transition:transform .32s ease, box-shadow .32s ease,border 0.5s;position:relative;}
 .member::before{
   content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(45deg, rgba(255,154,28,0.02), rgba(255,186,110,0.04));opacity:0;transition:opacity .6s ease;
 }
@@ -113,14 +113,12 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
 }
 
 /* reveal animation helpers */
-.reveal{ opacity:0; transform:translateY(28px) translateX(0); transition:transform 1.2s cubic-bezier(.15,.84,.42,1), opacity 1.2s ease;}
-.from-left{ transform:translateX(-18px) translateY(18px) }
-.from-right{ transform:translateX(18px) translateY(18px) }
-.visible{ opacity:1; transform:translateX(0) translateY(0) }
-
+.reveal{ opacity:0; transform:translateY(28px); transition:transform 1.2s cubic-bezier(.15,.84,.42,1), opacity 1.2s ease;}
+.visible{ opacity:1; transform:translateY(0); }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="#problem">Problem</a>
   <a href="#project">Project</a>
@@ -132,7 +130,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
 </nav>
 
 <header class="hero">
-  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-inner">
     <h1>PIEZOWALK</h1>
     <p>Harvesting energy from every step — practical piezoelectric mats for public spaces.</p>
@@ -146,12 +144,12 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   <div class="container">
     <h2>Problem & Solution</h2>
     <div class="split">
-      <article class="ps-card ps-left from-left">
+      <article class="ps-card ps-left">
         <div class="icon">⚠️</div>
         <h3>The Problem</h3>
         <p>Modern public spaces consume large amounts of electricity while kinetic energy from pedestrian movement is wasted, increasing reliance on non-renewables and costs.</p>
       </article>
-      <article class="ps-card ps-right from-right">
+      <article class="ps-card ps-right">
         <div class="icon">🔋</div>
         <h3>The Solution</h3>
         <p>Piezowalk integrates piezoelectric mats in high-footfall areas to convert mechanical pressure into electrical energy for lighting, sensors, and micro-systems — reducing demand and improving sustainability.</p>
@@ -161,7 +159,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   </div>
 </section>
 
-<section id="project" class="reveal from-left">
+<section id="project" class="reveal">
   <div class="container">
     <h2>Our Project</h2>
     <div class="media"><img src="project.jpg" alt="Piezowalk Project"></div>
@@ -169,7 +167,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   </div>
 </section>
 
-<section id="experiments" class="reveal from-right">
+<section id="experiments" class="reveal">
   <div class="container">
     <h2>Our Experiments</h2>
     <div class="media"><video muted autoplay loop playsinline><source src="experiment1.mp4" type="video/mp4"></video></div>
@@ -177,8 +175,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   </div>
 </section>
 
-<!-- DATA & RESULTS -->
-<section id="data" class="reveal from-left">
+<section id="data" class="reveal">
   <div class="container">
     <h2>Data & Results</h2>
     <p style="color:#efe6d9; max-width:800px; margin:auto; font-size:1.05rem;">
@@ -191,8 +188,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="howitworks" class="reveal from-right">
+<section id="howitworks" class="reveal">
   <div class="container">
     <h2>How It Works</h2>
     <p style="color:#efe6d9; max-width:850px; margin:auto; font-size:1.05rem;">
@@ -205,8 +201,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   </div>
 </section>
 
-<!-- WHAT IS PIEZOTILE -->
-<section id="piezotile" class="reveal from-left">
+<section id="piezotile" class="reveal">
   <div class="container">
     <h2>What is Piezotile?</h2>
     <p style="color:#efe6d9; max-width:850px; margin:auto; font-size:1.05rem;">
@@ -224,33 +219,77 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
   <div class="container">
     <h2>Our Team</h2>
     <div class="team-grid">
-      <div class="member reveal from-left">
+      <div class="member">
         <img src="hariz.jpg" alt="Hariz" class="avatar">
         <h4>Hariz</h4>
         <p>Builder</p>
       </div>
-      <div class="member reveal from-right">
+      <div class="member">
         <img src="rayyn.jpg" alt="Rayyn" class="avatar">
         <h4>Rayyn</h4>
         <p>Builder / Programmer</p>
       </div>
-      <div class="member reveal from-left">
+      <div class="member">
         <img src="farah.jpg" alt="Farah" class="avatar">
         <h4>Farah</h4>
         <p>Leader / Researcher</p>
       </div>
-      <div class="member reveal from-right">
+      <div class="member">
         <img src="nadhirah.jpg" alt="Nadhirah" class="avatar">
         <h4>Nadhirah</h4>
         <p>Designer</p>
       </div>
-      <div class="member reveal from-left">
+      <div class="member">
         <img src="balqis.jpg" alt="Balqis" class="avatar">
-       
+        <h4>Balqis</h4>
+        <p>Researcher</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
 
-  </script>
+<section id="sdgs" class="reveal">
+  <div class="container">
+    <h2>Our Sustainable Goals</h2>
+    <div class="sdg-grid">
+      <div class="sdg"><img src="sdg7.png" alt="Affordable and Clean Energy"><p>SDG 7: Affordable & Clean Energy</p></div>
+      <div class="sdg"><img src="sdg9.png" alt="Industry, Innovation and Infrastructure"><p>SDG 9: Industry, Innovation & Infrastructure</p></div>
+      <div class="sdg"><img src="sdg11.png" alt="Sustainable Cities"><p>SDG 11: Sustainable Cities & Communities</p></div>
+      <div class="sdg"><img src="sdg13.png" alt="Climate Action"><p>SDG 13: Climate Action</p></div>
+    </div>
+    <div class="divider"></div>
+  </div>
+</section>
 
+<section id="social" class="reveal">
+  <div class="container">
+    <h2>Socials</h2>
+    <div class="social-wrapper">
+      <div class="social-card">
+        <a href="#" class="social-btn">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Piezowalk Team | Powered by innovation & every step forward ⚡</p>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+function revealOnScroll(){
+  for(const el of reveals){
+    const rect=el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 60) el.classList.add('visible');
+  }
+}
+window.addEventListener('scroll',revealOnScroll);
+revealOnScroll();
+</script>
 </body>
 </html>
+
 
 
