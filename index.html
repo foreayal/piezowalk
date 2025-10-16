@@ -1,638 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Piezowalk — Glowing Amber Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #070707;
-            --amber-1: #FFB347;
-            --amber-2: #FF9A1C;
-            --amber-3: #CC6A00;
-            --muted: #d4d4d4;
-            --card: #111214;
-            --glass: rgba(255,186,110,0.06);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg);
-            color: var(--muted);
-            line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* links */
-        a {
-            color: var(--amber-1);
-            text-decoration: none
-        }
-
-        a.social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px
-        }
-
-        /* NAV */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1200;
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            padding: 12px 18px;
-            background: linear-gradient(180deg, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.72));
-            backdrop-filter: blur(6px);
-            border-bottom: 1px solid rgba(255, 186, 110, 0.06);
-        }
-
-        nav a {
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 6px 10px;
-            transition: color .18s, transform .18s;
-        }
-
-        nav a:hover {
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        /* hero */
-        .hero {
-            min-height: 64vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 48px 18px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-gradient {
-            position: absolute;
-            inset: -10% -20% -10% -20%;
-            background: linear-gradient(120deg, rgba(255,186,110,0.035), rgba(255,154,28,0.045) 40%, rgba(204,106,0,0.03) 70%);
-            filter: blur(40px) saturate(110%);
-            animation: heroFlow 22s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes heroFlow {
-            0% {
-                transform: translateX(-10%)
-            }
-
-            50% {
-                transform: translateX(6%)
-            }
-
-            100% {
-                transform: translateX(-10%)
-            }
-        }
-
-        .hero-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-            padding: 36px 20px;
-        }
-
-        .hero h1 {
-            margin: 0;
-            font-size: 40px;
-            letter-spacing: 1.2px;
-            font-weight: 800;
-            color: var(--muted);
-            line-height: 1.05;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--amber-2), var(--amber-1));
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 6px var(--amber-2), 0 0 12px var(--amber-1), 0 0 20px var(--amber-2);
-            animation: neonGlow 2.6s ease-in-out infinite alternate;
-        }
-
-        @keyframes neonGlow {
-            0% {
-                text-shadow: 0 0 6px var(--amber-2), 0 0 12px var(--amber-1);
-            }
-
-            50% {
-                text-shadow: 0 0 10px var(--amber-2), 0 0 18px var(--amber-1);
-            }
-
-            100% {
-                text-shadow: 0 0 6px var(--amber-2), 0 0 12px var(--amber-1);
-            }
-        }
-
-        .hero p {
-            margin: 12px 0 0;
-            color: #efe6d9;
-            opacity: .95;
-            font-weight: 300;
-            font-size: 1.02rem
-        }
-
-        /* scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 20px;
-            width: 28px;
-            height: 44px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 6px;
-            z-index: 3;
-            opacity: .9;
-        }
-
-        .scroll-indicator .wheel {
-            width: 6px;
-            height: 10px;
-            border-radius: 6px;
-            background: linear-gradient(#fff, #ffe8c9);
-            animation: wheel 1.6s infinite;
-            box-shadow: 0 0 8px rgba(255, 170, 80, 0.25);
-            opacity: .9;
-        }
-
-        @keyframes wheel {
-            0% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(10px)
-            }
-
-            100% {
-                transform: translateY(0)
-            }
-        }
-
-        /* layout */
-        .angle {
-            height: 64px;
-            background: transparent;
-            clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%);
-            transform: translateY(-1px);
-        }
-
-        section {
-            padding: 64px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .container {
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .divider {
-            height: 2px;
-            width: 80%;
-            margin: 18px auto 0;
-            background: linear-gradient(90deg, transparent, rgba(255,154,28,0.45), transparent);
-            opacity: .7;
-            border-radius: 2px;
-        }
-
-        /* headings */
-        h2 {
-            text-align: center;
-            font-size: 1.85rem;
-            font-weight: 700;
-            margin-bottom: 18px;
-            background: linear-gradient(90deg, var(--amber-2), var(--amber-1));
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 6px var(--amber-2), 0 0 10px var(--amber-1);
-        }
-
-        /* problem/solution */
-        .split {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            align-items: stretch;
-        }
-
-        .ps-card {
-            background: linear-gradient(180deg, #0f0f0f, #0b0b0b);
-            border-radius: 14px;
-            padding: 28px;
-            box-shadow: 0 8px 40px rgba(255, 186, 110, 0.08);
-            border: 1px solid rgba(255, 186, 110, 0.04);
-        }
-
-        .ps-card h3 {
-            color: var(--amber-1);
-            margin: 0 0 8px
-        }
-
-        .ps-card p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-            font-weight: 300
-        }
-
-        /* media */
-        .media {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            align-items: center;
-        }
-
-        .media img,
-        .media video {
-            width: 100%;
-            max-width: 720px;
-            border-radius: 12px;
-            display: block;
-            border: 1px solid rgba(255, 186, 110, 0.04);
-            box-shadow: 0 10px 30px rgba(255, 154, 28, 0.06);
-        }
-
-        /* team */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 20px;
-        }
-
-        .member {
-            background: linear-gradient(180deg, #0f0f0f, #0b0b0b);
-            padding: 18px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform .32s ease, box-shadow .32s ease;
-            position: relative;
-        }
-
-        .member::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            background: linear-gradient(45deg, rgba(255,154,28,0.02), rgba(255,186,110,0.04));
-            opacity: 0;
-            transition: opacity .6s ease;
-        }
-
-        .member:hover::before {
-            opacity: 1;
-        }
-
-        .member:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 50px rgba(255,154,28,0.08);
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 12px;
-            display: block;
-            object-fit: cover;
-            border: 5px solid rgba(255,186,110,0.18);
-            box-shadow: 0 8px 30px rgba(255,154,28,0.06);
-            transition: transform .32s ease;
-        }
-
-        .member:hover .avatar {
-            transform: scale(1.04);
-        }
-
-        .member h4 {
-            margin: 6px 0 4px;
-            color: var(--amber-1);
-            font-size: 1rem
-        }
-
-        .member p {
-            margin: 0;
-            color: var(--muted);
-            font-size: .95rem;
-            opacity: .95
-        }
-
-        /* sdg */
-        .sdg-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .sdg {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgba(255,186,110,0.02), rgba(255,154,28,0.01));
-            border: 1px solid rgba(255,186,110,0.03);
-            text-align: center;
-        }
-
-        .sdg img {
-            width: 84px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        /* social */
-        .social-wrapper {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            align-items: stretch;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-
-        .connect-card {
-            flex: 0 1 320px;
-            background: linear-gradient(180deg, rgba(255,154,28,0.03), rgba(255,186,110,0.05));
-            border-radius: 14px;
-            padding: 18px;
-            text-align: center;
-            box-shadow: 0 12px 40px rgba(255,154,28,0.06);
-            border: 1px solid rgba(255,186,110,0.06);
-        }
-
-        .connect-card .title {
-            font-weight: 700;
-            color: var(--amber-1);
-            margin-bottom: 8px;
-        }
-
-        .connect-card .sub {
-            color: var(--muted);
-            margin-top: 8px;
-        }
-
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--amber-1), var(--amber-2));
-            color: #040404;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(255,154,28,0.10);
-            transition: transform .2s ease;
-        }
-
-        .social-btn:hover {
-            transform: scale(1.03);
-        }
-
-        footer {
-            text-align: center;
-            padding: 28px 12px;
-            color: #bfb7a8;
-            font-size: .9rem;
-            background: transparent
-        }
-
-        /* responsive */
-        @media(min-width:800px) {
-            .split {
-                grid-template-columns: 1fr 1fr;
-                gap: 28px
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .sdg-grid {
-                grid-template-columns: repeat(4, 1fr)
-            }
-
-            .media {
-                flex-direction: row;
-                gap: 20px;
-                align-items: flex-start
-            }
-
-            .media img,
-            .media video {
-                max-width: 48%
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: transform 1.2s cubic-bezier(.15,.84,.42,1), opacity 1.2s ease;
-        }
-
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Piezowalk — Glowing Amber Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;
+  --amber-1:#FFB347;
+  --amber-2:#FF9A1C;
+  --amber-3:#CC6A00;
+  --muted:#d4d4d4;
+  --card:#111214;
+  --glass: rgba(255,186,110,0.06);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--muted);
+  line-height:1.6;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+/* links */
+a{color:var(--amber-1);text-decoration:none;}
+a.social-btn{display:inline-flex;align-items:center;gap:10px;}
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:1200;
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  padding:12px 18px;
+  background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(10,10,10,0.72));
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,186,110,0.06);
+}
+nav a{
+  font-weight:600;
+  font-size:0.95rem;
+  padding:6px 10px;
+  transition: color .18s, transform .18s;
+}
+nav a:hover{
+  color:#fff;
+  transform:translateY(-2px);
+}
+/* hero */
+.hero{
+  min-height:64vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:48px 18px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-gradient{
+  position:absolute;
+  inset:-10% -20% -10% -20%;
+  background: linear-gradient(120deg, rgba(255,186,110,0.035), rgba(255,154,28,0.045) 40%, rgba(204,106,0,0.03) 70%);
+  filter:blur(40px) saturate(110%);
+  animation:heroFlow 22s linear infinite;
+  z-index:0;
+}
+@keyframes heroFlow{
+  0%{transform:translateX(-10%);}
+  50%{transform:translateX(6%);}
+  100%{transform:translateX(-10%);}
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  padding:36px 20px;
+}
+.hero h1{
+  margin:0;
+  font-size:40px;
+  letter-spacing:1.2px;
+  font-weight:800;
+  color:var(--muted);
+  line-height:1.05;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,var(--amber-2),var(--amber-1));
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 6px var(--amber-2),0 0 12px var(--amber-1),0 0 20px var(--amber-2);
+  animation:neonGlow 2.6s ease-in-out infinite alternate;
+}
+@keyframes neonGlow{
+  0%{text-shadow:0 0 6px var(--amber-2),0 0 12px var(--amber-1);}
+  50%{text-shadow:0 0 10px var(--amber-2),0 0 18px var(--amber-1);}
+  100%{text-shadow:0 0 6px var(--amber-2),0 0 12px var(--amber-1);}
+}
+.hero p{
+  margin:12px 0 0;
+  color:#efe6d9;
+  opacity:.95;
+  font-weight:300;
+  font-size:1.02rem;
+}
+/* scroll indicator */
+.scroll-indicator{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:20px;
+  width:28px;
+  height:44px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:6px;
+  z-index:3;
+  opacity:.9;
+}
+.scroll-indicator .wheel{
+  width:6px;
+  height:10px;
+  border-radius:6px;
+  background:linear-gradient(#fff,#ffe8c9);
+  animation:wheel 1.6s infinite;
+  box-shadow:0 0 8px rgba(255,170,80,0.25);
+  opacity:.9;
+}
+@keyframes wheel{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(10px);}
+  100%{transform:translateY(0);}
+}
+/* layout */
+.angle{
+  height:64px;
+  background:transparent;
+  clip-path:polygon(0 0,100% 40%,100% 100%,0 100%);
+  transform:translateY(-1px);
+}
+section{
+  padding:64px 20px;
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+}
+.container{width:100%;margin:0 auto;}
+.divider{
+  height:2px;
+  width:80%;
+  margin:18px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(255,154,28,0.45), transparent);
+  opacity:.7;
+  border-radius:2px;
+}
+/* headings */
+h2{
+  text-align:center;
+  font-size:1.85rem;
+  font-weight:700;
+  margin-bottom:18px;
+  background:linear-gradient(90deg,var(--amber-2),var(--amber-1));
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 6px var(--amber-2),0 0 10px var(--amber-1);
+}
+/* problem/solution */
+.split{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+  align-items:stretch;
+}
+.ps-card{
+  background:linear-gradient(180deg,#0f0f0f,#0b0b0b);
+  border-radius:14px;
+  padding:28px;
+  box-shadow:0 8px 40px rgba(255,186,110,0.08);
+  border:1px solid rgba(255,186,110,0.04);
+}
+.ps-card h3{
+  color:var(--amber-1);
+  margin:0 0 8px;
+}
+.ps-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-weight:300;
+}
+/* media */
+.media{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+}
+.media img,.media video{
+  width:100%;
+  max-width:720px;
+  border-radius:12px;
+  display:block;
+  border:1px solid rgba(255,186,110,0.04);
+  box-shadow:0 10px 30px rgba(255,154,28,0.06);
+}
+/* team */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(1,1fr);
+  gap:20px;
+}
+.member{
+  background:linear-gradient(180deg,#0f0f0f,#0b0b0b);
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  transition:transform .32s ease,box-shadow .32s ease;
+  position:relative;
+}
+.member::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:12px;
+  background:linear-gradient(45deg,rgba(255,154,28,0.02),rgba(255,186,110,0.04));
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.member:hover::before{opacity:1;}
+.member:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(255,154,28,0.08);}
+.avatar{
+  width:120px;height:120px;border-radius:50%;
+  margin:0 auto 12px;
+  display:block;
+  object-fit:cover;
+  border:5px solid rgba(255,186,110,0.18);
+  box-shadow:0 8px 30px rgba(255,154,28,0.06);
+  transition:transform .32s ease;
+}
+.member:hover .avatar{transform:scale(1.04);}
+.member h4{margin:6px 0 4px;color:var(--amber-1);font-size:1rem;}
+.member p{margin:0;color:var(--muted);font-size:.95rem;opacity:.95;}
+/* sdg */
+.sdg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.sdg{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:16px;
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(255,186,110,0.02),rgba(255,154,28,0.01));
+  border:1px solid rgba(255,186,110,0.03);
+  text-align:center;
+}
+.sdg img{width:84px;height:auto;margin-bottom:10px;}
+/* social */
+.social-wrapper{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  align-items:stretch;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.connect-card{
+  flex:0 1 320px;
+  background:linear-gradient(180deg,rgba(255,154,28,0.03),rgba(255,186,110,0.05));
+  border-radius:14px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 12px 40px rgba(255,154,28,0.06);
+  border:1px solid rgba(255,186,110,0.06);
+}
+.connect-card .title{font-weight:700;color:var(--amber-1);margin-bottom:8px;}
+.connect-card .sub{color:var(--muted);margin-top:8px;}
+.social-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--amber-1),var(--amber-2));
+  color:#040404;
+  font-weight:700;
+  box-shadow:0 10px 30px rgba(255,154,28,0.10);
+  transition:transform .2s ease;
+}
+.social-btn:hover{transform:scale(1.03);}
+footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;background:transparent;}
+/* responsive */
+@media(min-width:800px){
+  .split{grid-template-columns:1fr 1fr;gap:28px;}
+  .team-grid{grid-template-columns: repeat(3, 1fr);}
+  .sdg-grid{grid-template-columns: repeat(4, 1fr);}
+  .media{flex-direction:row;gap:20px;align-items:flex-start;}
+  .media img, .media video{max-width:48%;}
+}
+.reveal{opacity:0;transform:translateY(28px);transition:transform 1.2s cubic-bezier(.15,.84,.42,1),opacity 1.2s ease;}
+.visible{opacity:1;transform:translateY(0);}
+</style>
 </head>
-
 <body>
 
-
 <nav>
-    <a href="#problem">⚠️ Problem</a>
-    <a href="#piezotile">🧩 Piezotile</a>
-    <a href="#experiments">🎞️ Experiments</a>
-    <a href="#data">📊 Data</a>
-    <a href="#team">👥 Team</a>
-    <a href="#sdgs">🌍 SDGs</a>
-    <a href="#social">📱 Connect</a>
+  <a href="#problem">⚠️ Problem</a>
+  <a href="#piezotile">🧩 Piezotile</a>
+  <a href="#experiments">🎞️ Experiments</a>
+  <a href="#data">📊 Data</a>
+  <a href="#team">👥 Team</a>
+  <a href="#sdgs">🌍 SDGs</a>
+  <a href="#social">📱 Connect</a>
 </nav>
 
 <header class="hero">
-    <div class="hero-gradient" aria-hidden="true"></div>
-    <div class="hero-inner">
-        <h1>IMPLEMENTATION OF <span>PIEZO TILES</span> IN PUBLIC INFRASTRUCTURES</h1>
-        <p>Harvesting energy from every step — practical piezoelectric mats for public spaces. ⚡👣</p>
-    </div>
-    <div class="scroll-indicator">
-        <div class="wheel"></div>
-    </div>
+  <div class="hero-gradient" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1>IMPLEMENTATION OF <span>PIEZO TILES</span> IN PUBLIC INFRASTRUCTURES</h1>
+    <p>Harvesting energy from every step — practical piezoelectric mats for public spaces. ⚡👣</p>
+  </div>
+  <div class="scroll-indicator"><div class="wheel"></div></div>
 </header>
 
 <div class="angle" style="background:linear-gradient(180deg, rgba(255,154,28,0.035), transparent)"></div>
 
 <section id="problem" class="reveal">
-    <div class="container">
-        <h2>Problem & Solution ⚡</h2>
-        <div class="split">
-            <article class="ps-card">
-                <h3>The Problem</h3>
-                <p>Modern public spaces consume large amounts of electricity while kinetic energy from pedestrian movement is wasted, increasing reliance on non-renewables and costs.</p>
-            </article>
-            <article class="ps-card">
-                <h3>The Solution</h3>
-                <p>Piezowalk integrates piezoelectric mats in high-footfall areas to convert mechanical pressure into electrical energy for lighting, sensors, and micro-systems — reducing demand and improving sustainability.</p>
-            </article>
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>Problem & Solution ⚡</h2>
+    <div class="split">
+      <article class="ps-card">
+        <h3>The Problem</h3>
+        <p>Modern public spaces consume large amounts of electricity while kinetic energy from pedestrian movement is wasted, increasing reliance on non-renewables and costs.</p>
+      </article>
+      <article class="ps-card">
+        <h3>The Solution</h3>
+        <p>Piezowalk integrates piezoelectric mats in high-footfall areas to convert mechanical pressure into electrical energy for lighting, sensors, and micro-systems — reducing demand and improving sustainability.</p>
+      </article>
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="piezotile" class="reveal">
-    <div class="container">
-        <h2>What is Piezotile? 🧠</h2>
-        <p style="color:var(--muted);max-width:900px;margin:0 auto 16px;font-size:1.04rem;">
-            Piezotile was our earlier rigid prototype — a tile that captured energy from footsteps. Though functional, installation and scalability were limited, which inspired our flexible <strong>Piezomat</strong> approach for easier deployment in public infrastructures like malls and transit hubs.
-        </p>
-        <div class="media" style="margin-top:8px;">
-            <img src="piezotile1.png" alt="Piezotile Prototype">
-            <img src="piezotile2.png" alt="Piezotile Close-up">
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>What is Piezotile? 🧠</h2>
+    <p style="color:var(--muted);max-width:900px;margin:0 auto 16px;font-size:1.04rem;">
+      Piezotile was our earlier rigid prototype — a tile that captured energy from footsteps. Though functional, installation and scalability were limited, which inspired our flexible <strong>Piezomat</strong> approach for easier deployment in public infrastructures like malls and transit hubs.
+    </p>
+    <div class="media" style="margin-top:8px;">
+      <img src="piezotile1.png" alt="Piezotile Prototype">
+      <img src="piezotile2.png" alt="Piezotile Close-up">
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="data" class="reveal">
-    <div class="container">
-        <h2>Data & Results 📊</h2>
-        <p style="color:var(--muted);max-width:850px;margin:0 auto 12px;font-size:1.02rem;">
-            Collected voltage/power outputs and sample test results from our prototype trials.
-        </p>
-        <div class="media">
-            <img src="dataresults.png" alt="Data Results Table / Graph">
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>Data & Results 📊</h2>
+    <p style="color:var(--muted);max-width:850px;margin:0 auto 12px;font-size:1.02rem;">
+      Collected voltage/power outputs and sample test results from our prototype trials.
+    </p>
+    <div class="media">
+      <img src="dataresults.png" alt="Data Results Table / Graph">
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="experiments" class="reveal">
-    <div class="container">
-        <h2>Experiments 🎞️</h2>
-        <div class="media">
-            <video muted autoplay loop playsinline controlslist="nodownload">
-                <source src="dataresults1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <img src="dataresults.png" alt="Experiment graphs">
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>Experiments 🎞️</h2>
+    <div class="media" aria-hidden="false">
+      <video muted autoplay loop playsinline controlslist="nodownload" style="border-radius:12px;max-width:720px;">
+        <source src="dataresults1.mp4" type="video/mp4">
+      </video>
+      <img src="dataresults.png" alt="Experiment graphs">
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="team" class="reveal">
-    <div class="container">
-        <h2>Team 👥</h2>
-        <div class="team-grid">
-            <div class="member">
-                <img src="hariz.png" class="avatar" alt="Hariz">
-                <h4>Hariz</h4>
-                <p>Builder</p>
-            </div>
-            <div class="member">
-                <img src="rayyn.png" class="avatar" alt="Rayyn">
-                <h4>Rayyn</h4>
-                <p>Builder / Programmer</p>
-            </div>
-            <div class="member">
-                <img src="farah.png" class="avatar" alt="Farah">
-                <h4>Farah</h4>
-                <p>Leader / Researcher</p>
-            </div>
-            <div class="member">
-                <img src="nadhirah.png" class="avatar" alt="Nadhirah">
-                <h4>Nadhirah</h4>
-                <p>Designer</p>
-            </div>
-            <div class="member">
-                <img src="balqis.png" class="avatar" alt="Balqis">
-                <h4>Balqis</h4>
-                <p>Media / Designer</p>
-            </div>
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>Team 👥</h2>
+    <div class="team-grid">
+      <div class="member"><img src="hariz.png" class="avatar"><h4>Hariz</h4><p>Builder</p></div>
+      <div class="member"><img src="rayyn.png" class="avatar"><h4>Rayyn</h4><p>Builder / Programmer</p></div>
+      <div class="member"><img src="farah.png" class="avatar"><h4>Farah</h4><p>Leader / Researcher</p></div>
+      <div class="member"><img src="nadhirah.png" class="avatar"><h4>Nadhirah</h4><p>Designer</p></div>
+      <div class="member"><img src="balqis.png" class="avatar"><h4>Balqis</h4><p>Media / Designer</p></div>
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="sdgs" class="reveal">
-    <div class="container">
-        <h2>SDGs 🌍</h2>
-        <div class="sdg-grid">
-            <div class="sdg">
-                <img src="sdg7.png" alt="SDG 7">
-                <p>SDG 7: Affordable & Clean Energy</p>
-            </div>
-            <div class="sdg">
-                <img src="sdg9.png" alt="SDG 9">
-                <p>SDG 9: Industry, Innovation & Infrastructure</p>
-            </div>
-            <div class="sdg">
-                <img src="sdg11.png" alt="SDG 11">
-                <p>SDG 11: Sustainable Cities & Communities</p>
-            </div>
-            <div class="sdg">
-                <img src="sdg13.png" alt="SDG 13">
-                <p>SDG 13: Climate Action</p>
-            </div>
-        </div>
-        <div class="divider"></div>
+  <div class="container">
+    <h2>SDGs 🌍</h2>
+    <div class="sdg-grid">
+      <div class="sdg"><img src="sdg7.png" alt="SDG7"><p>SDG 7: Affordable & Clean Energy</p></div>
+      <div class="sdg"><img src="sdg9.png" alt="SDG9"><p>SDG 9: Industry, Innovation & Infrastructure</p></div>
+      <div class="sdg"><img src="sdg11.png" alt="SDG11"><p>SDG 11: Sustainable Cities & Communities</p></div>
+      <div class="sdg"><img src="sdg13.png" alt="SDG13"><p>SDG 13: Climate Action</p></div>
     </div>
+    <div class="divider"></div>
+  </div>
 </section>
 
 <section id="social" class="reveal">
-    <div class="container">
-        <h2>Connect 📱</h2>
-        <div class="social-wrapper">
-            <div class="connect-card">
-                <div class="title">TC Siti Musitah</div>
-                <div class="sub">📞 +60 115 133 567 6</div>
-            </div>
-            <div class="connect-card">
-                <div class="title">Instagram</div>
-                <a href="https://instagram.com/piezow" target="_blank" class="social-btn">📸 @piezow</a>
-                <div class="sub">Follow our updates and behind-the-scenes!</div>
-            </div>
-        </div>
+  <div class="container">
+    <h2>Connect 📱</h2>
+    <div class="social-wrapper">
+      <div class="connect-card">
+        <div class="title">TC Siti Musitah</div>
+        <div class="sub">📞 +60 115 133 567 6</div>
+      </div>
+      <div class="connect-card">
+        <div class="title">Instagram</div>
+        <a href="https://instagram.com/piezow" target="_blank" class="social-btn">📸 @piezow</a>
+        <div class="sub">Follow our updates and behind-the-scenes!</div>
+      </div>
     </div>
+  </div>
 </section>
 
 <footer>© 2025 Piezowalk — Glowing Amber Edition</footer>
 
 <script>
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
+</body>
+</html>
+
