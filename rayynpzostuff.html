@@ -190,7 +190,7 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
       Piezotile was our earlier rigid prototype — a tile that captured energy from footsteps. Though functional, installation and scalability were limited, which inspired our flexible <strong>Piezomat</strong> approach for easier deployment in public infrastructures like malls and transit hubs.
     </p>
     <div class="media" style="margin-top:8px;">
-        <img src="https://foreayal.github.io/piezowalk/piezotile1.png" alt="Piezotile Prototype">
+      <img src="piezotile1.png" alt="Piezotile Prototype">
       <img src="piezotile2.png" alt="Piezotile Close-up">
     </div>
     <div class="divider"></div>
@@ -205,6 +205,10 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
     </p>
     <div class="media">
       <img src="dataresults.png" alt="Data Results Table / Graph">
+      <video controls playsinline preload="metadata" style="border-radius:12px;max-width:720px;">
+        <source src="dataresults.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
     <div class="divider"></div>
   </div>
@@ -280,32 +284,33 @@ footer{text-align:center;padding:28px 12px;color:#bfb7a8;font-size:.9rem;backgro
 
 <section id="social" class="reveal">
   <div class="container">
-    <h2>Connect With Us 📱</h2>
+    <h2>Connect 📱</h2>
     <div class="social-wrapper">
-      <div class="connect-card" role="region" aria-labelledby="ig-label">
-        <div class="title" id="ig-label">Instagram</div>
-        <a class="social-btn" href="https://www.instagram.com/piezowalk" target="_blank" rel="noopener">
-          <img src="instagram.png" alt="Instagram" style="width:22px;height:22px;"> Follow Us
-        </a>
-        <div class="sub">@piezowalk</div>
+      <div class="connect-card">
+        <div class="title">GitHub</div>
+        <a href="https://github.com/foreayal/piezowalk" target="_blank" class="social-btn">🌐 Visit Repository</a>
+        <div class="sub">View code, updates, and experiments.</div>
       </div>
       <div class="connect-card">
         <div class="title">Email</div>
-        <p class="sub">piezowalk@gmail.com</p>
+        <a href="mailto:team@piezowalk.com" class="social-btn">📩 Send Email</a>
+        <div class="sub">Reach out for collaboration or questions.</div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© 2025 Piezowalk. All rights reserved.</footer>
+<footer>© 2025 Piezowalk — Glowing Amber Edition</footer>
 
 <script>
-const observer = new IntersectionObserver((entries)=>{
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    if(entry.isIntersecting) entry.target.classList.add('visible');
   });
-},{threshold:0.2});
-document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
+
 </body>
 </html>
+
